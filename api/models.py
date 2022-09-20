@@ -16,7 +16,7 @@ class User(ItemBase):
 class Category(ItemBase):
     name = models.CharField(max_length=128, null=False, unique=True)
 
-class Project(ItemBase):
+class Project(models.Model):
     image = models.ImageField(upload_to='project/%Y/%m')
     name = models.CharField(max_length=200)
     category = models.CharField(max_length=200)

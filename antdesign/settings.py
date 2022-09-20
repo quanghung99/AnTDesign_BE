@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'api',
     'drf_yasg',
     'debug_toolbar',
-    'oauth2_provider'
+    'oauth2_provider',
+    'rest_framework_simplejwt'
 ]
 
 STATIC_URL = '/static/'
@@ -114,19 +115,19 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 2,
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
-        ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     
 }
 
 
 #oAuth2 expiration
-OAUTH_ACCESS_TOKEN_MODEL = 'oauth2_provider.models.AccessToken'
-OAUTH2_PROVIDER = {
-    'ACCESS_TOKEN_EXPIRE_SECONDS' : 86400,
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
-}
+# OAUTH_ACCESS_TOKEN_MODEL = 'oauth2_provider.models.AccessToken'
+# OAUTH2_PROVIDER = {
+#     'ACCESS_TOKEN_EXPIRE_SECONDS' : 86400,
+#     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
